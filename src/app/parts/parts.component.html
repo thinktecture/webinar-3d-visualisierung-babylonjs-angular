@@ -1,0 +1,9 @@
+<ul>
+  <li
+    *ngFor="let part of parts"
+    (mouseenter)="highlight.emit(part)"
+    (click)="selectPart.emit(part)"
+  >
+    {{ part }}
+  </li>
+</ul>
