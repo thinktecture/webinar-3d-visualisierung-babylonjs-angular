@@ -10,7 +10,6 @@ import { MyScene } from './babylon/my-scene';
   styleUrls: [ './app.component.scss' ],
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
-
   parts: Observable<string[]>;
 
   @ViewChild('ref', { static: true })
