@@ -23,10 +23,11 @@
     "@babylonjs/loaders": "^4.1.0",
     "@babylonjs/materials": "^4.1.0",
     "@capacitor/angular": "^1.0.2",
+    "@capacitor/core": "latest",
+    "@capacitor/ios": "^2.4.5",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1",
-    "@capacitor/core": "latest"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.8",
