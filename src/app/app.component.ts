@@ -3,6 +3,7 @@ import { Engine } from '@babylonjs/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { MyScene } from './babylon/my-scene';
+import { Plugins } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',

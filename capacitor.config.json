@@ -1,0 +1,13 @@
+{
+  "appId": "com.thinktecture.demo.babylonjsAngularWebinar",
+  "appName": "ng-babylonjs-simpel-integration",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist/ng-babylonjs-simpel-integration",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
