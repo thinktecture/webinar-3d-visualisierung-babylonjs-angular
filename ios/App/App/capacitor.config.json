@@ -1,0 +1,16 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "ng-babylonjs-simpel-integration",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist/ng-babylonjs-simpel-integration",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "server": {
+    "url": "http://192.168.178.46:8100"
+  }
+}
