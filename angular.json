@@ -2,16 +2,23 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "cli": {
+    "defaultCollection": "@ionic/angular-toolkit"
+  },
+  "schematics": {
+    "@ionic/angular-toolkit:component": {
+      "styleext": "scss"
+    },
+    "@ionic/angular-toolkit:page": {
+      "styleext": "scss"
+    }
+  },
   "projects": {
     "ng-babylonjs-simpel-integration": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "",
-    "sourceRoot": "src",
+      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
@@ -25,10 +32,17 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/theme/variables.scss",
+              "src/global.scss"
             ],
             "scripts": []
           },
@@ -72,6 +86,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-babylonjs-simpel-integration:build:production"
+            },
+            "ci": {
+              "progress": false
             }
           }
         },
@@ -96,6 +113,12 @@
               "src/styles.scss"
             ],
             "scripts": []
+          },
+          "configurations": {
+            "ci": {
+              "progress": false,
+              "watch": false
+            }
           }
         },
         "lint": {
@@ -120,10 +143,37 @@
           "configurations": {
             "production": {
               "devServerTarget": "ng-babylonjs-simpel-integration:serve:production"
+            },
+            "ci": {
+              "devServerTarget": "ng-babylonjs-simpel-integration:serve:ci"
+            }
+          }
+        },
+        "ionic-cordova-build": {
+          "builder": "@ionic/angular-toolkit:cordova-build",
+          "options": {
+            "browserTarget": "ng-babylonjs-simpel-integration:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-babylonjs-simpel-integration:build:production"
+            }
+          }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "cordovaBuildTarget": "ng-babylonjs-simpel-integration:ionic-cordova-build",
+            "devServerTarget": "ng-babylonjs-simpel-integration:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ng-babylonjs-simpel-integration:serve:production"
             }
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ng-babylonjs-simpel-integration"
 }
