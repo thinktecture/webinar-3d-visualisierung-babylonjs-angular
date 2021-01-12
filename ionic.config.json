@@ -3,7 +3,9 @@
   "projects": {
     "ng-babylonjs-simpel-integration": {
       "name": "ng-babylonjs-simpel-integration",
-      "integrations": {},
+      "integrations": {
+        "capacitor": {}
+      },
       "type": "angular"
     }
   }
