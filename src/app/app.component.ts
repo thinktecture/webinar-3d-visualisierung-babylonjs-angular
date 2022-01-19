@@ -20,15 +20,19 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   resize = Subscription.EMPTY;
 
+  constructor(private readonly ngZone: NgZone) {
+  }
+
   ngOnInit(): void {
     this.engine = new Engine(this.canvas.nativeElement);
     this.scene = new MyScene(this.engine);
-    this.scene.init();
     this.parts = this.scene.parts;
+    this.scene.init();
   }
 
   ngAfterViewInit(): void {
-    this.engine.runRenderLoop(() => this.scene.render());
+    this.ngZone.runOutsideAngular(() => this.engine.runRenderLoop(() => this.scene.render()));
+
 
     this.resize = fromEvent(window, 'resize').pipe(
       debounceTime(300)

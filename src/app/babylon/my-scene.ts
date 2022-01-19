@@ -19,9 +19,10 @@ SceneLoader.RegisterPlugin(new OBJFileLoader());
 
 export class MyScene extends Scene {
   highlightedMesh: string;
-  parts = new BehaviorSubject<string[]>([]);
 
   private arcCamera: ArcRotateCamera;
+  parts = new BehaviorSubject<string[]>([]);
+
   constructor(engine: Engine) {
     super(engine);
   }
@@ -41,6 +42,7 @@ export class MyScene extends Scene {
     this.highlightedMesh = part;
   }
 
+
   removeHighlight(part: string): void {
     if (part) {
       const m = this.getMeshByName(part);
@@ -54,7 +56,7 @@ export class MyScene extends Scene {
   targetCenter() {
     const node = this.getTransformNodeByName('group');
 
-    const { min, max } = node.getHierarchyBoundingVectors(true);
+    const {min, max} = node.getHierarchyBoundingVectors(true);
     node.position.y -= min.y;
 
     const center = min.add(max).multiplyByFloats(.5, .5, .5);
@@ -77,11 +79,11 @@ export class MyScene extends Scene {
 
     this.createDefaultCamera(true);
     this.arcCamera = this.activeCamera as ArcRotateCamera;
-    this.cameras[ 0 ].attachControl(this.getEngine().getRenderingCanvas(), false);
+    this.cameras[0].attachControl(this.getEngine().getRenderingCanvas(), false);
     this.createDefaultLight();
     this.clearColor = new Color4(.9, .9, .9, 1);
 
-    const plane = MeshBuilder.CreatePlane('grid', { size: 2000, sideOrientation: Mesh.DOUBLESIDE });
+    const plane = MeshBuilder.CreatePlane('grid', {size: 2000, sideOrientation: Mesh.DOUBLESIDE});
     plane.rotation.x = Math.PI / 2;
     const gridMat = new GridMaterial('grid', this);
     gridMat.lineColor = new Color3(.85, .85, .85);
@@ -118,7 +120,7 @@ export class MyScene extends Scene {
   load(path: string) {
     SceneLoader.Append('', path, this, scene => {
       const groupNode = new TransformNode('group', this);
-      scene.meshes.filter(m => m.name !== 'grid').forEach((m: Mesh) => {
+      scene.meshes.filter(m => m.name !== 'grid').forEach((m) => {
         m.parent = groupNode;
         m.actionManager = new ActionManager(scene);
         m.isPickable = true;
@@ -137,9 +139,9 @@ export class MyScene extends Scene {
 
 function disableCanvasEvents(canvas: HTMLCanvasElement): void {
   // passive: false is required to catch the touch events properly
-  document.body.addEventListener('touchstart', event => preventDefault(event, canvas), { passive: false });
-  document.body.addEventListener('touchend', event => preventDefault(event, canvas), { passive: false });
-  document.body.addEventListener('touchmove', event => preventDefault(event, canvas), { passive: false });
+  document.body.addEventListener('touchstart', event => preventDefault(event, canvas), {passive: false});
+  document.body.addEventListener('touchend', event => preventDefault(event, canvas), {passive: false});
+  document.body.addEventListener('touchmove', event => preventDefault(event, canvas), {passive: false});
 }
 
 function preventDefault(event: Event, ref: HTMLCanvasElement): void {
