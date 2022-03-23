@@ -28,10 +28,11 @@ export class MyScene extends Scene {
     super(engine);
   }
 
-  select(part: string) {
-    const meshes = this.meshes.filter(m => m.name !== 'grid');
-    meshes.forEach(m => m.material.alpha = 0.3);
-    meshes.find(m => m.name === part).material.alpha = 1;
+  select(name: string) {
+    // LAB 4
+    // find the mesh by name
+    // remove opacity of all meshes
+    // reset the selected mesh opacity to 1
   }
 
   highlight(part: string): void {
@@ -43,7 +44,6 @@ export class MyScene extends Scene {
     this.highlightedMesh = part;
     this.highlightedMesh$.next(part);
   }
-
 
   removeHighlight(part: string): void {
     if (part) {
@@ -78,14 +78,23 @@ export class MyScene extends Scene {
   }
 
   init() {
-    disableCanvasEvents(this.getEngine().getRenderingCanvas());
+    this.createBaseScene();
+    this.createDefaultLight();
+    this.initGround();
+    this.handleKeyboardEvents();
+    // LAB 5
+    // add listener to scene to check on newly added meshes
+  }
 
+  private createBaseScene() {
+    disableCanvasEvents(this.getEngine().getRenderingCanvas());
     this.createDefaultCamera(true);
     this.arcCamera = this.activeCamera as ArcRotateCamera;
     this.cameras[0].attachControl(this.getEngine().getRenderingCanvas(), false);
-    this.createDefaultLight();
     this.clearColor = new Color4(.9, .9, .9, 1);
+  }
 
+  private initGround() {
     const plane = MeshBuilder.CreatePlane('grid', {size: 2000, sideOrientation: Mesh.DOUBLESIDE});
     plane.rotation.x = Math.PI / 2;
     const gridMat = new GridMaterial('grid', this);
@@ -93,7 +102,9 @@ export class MyScene extends Scene {
     gridMat.mainColor = new Color3(.5, .5, .5);
     gridMat.opacity = 0.97;
     plane.material = gridMat;
+  }
 
+  private handleKeyboardEvents() {
     this.actionManager = new ActionManager(this);
     this.actionManager.registerAction(new ExecuteCodeAction(ActionManager.OnKeyUpTrigger, evt => {
       const event = evt.sourceEvent as KeyboardEvent;
@@ -120,22 +131,16 @@ export class MyScene extends Scene {
     }));
   }
 
-  load(path: string) {
-    SceneLoader.Append('', path, this, scene => {
-      const groupNode = new TransformNode('group', this);
-      scene.meshes.filter(m => m.name !== 'grid').forEach((m) => {
-        m.parent = groupNode;
-        m.actionManager = new ActionManager(scene);
-        m.isPickable = true;
+  loadModels(path: string): void {
+    // LAB 3
+    // - Add meshes as you like
+    // - Make a mesh selectable with the cursor
 
-        m.actionManager.registerAction(new ExecuteCodeAction(ActionManager.OnPointerOverTrigger, () => this.highlight(m.name)));
-        m.actionManager.registerAction(new ExecuteCodeAction(ActionManager.OnPointerOutTrigger, () => this.removeHighlight(m.name)));
-
-        this.parts.value.unshift(m.name);
-
-        this.targetCenter();
-      });
-    });
+    // LAB 6
+    // - Use the SceneLoader to Append meshes by loading from a file
+    // - Make a mesh pickable with the cursor
+    // - Create a ActionManager for each mesh
+    // - Add Actions to the mesh to react to a hover
   }
 }
 

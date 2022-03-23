@@ -34,14 +34,15 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.ngZone.runOutsideAngular(() => this.engine.runRenderLoop(() => this.scene.render()));
-
+    // LAB 1
+    // call the scene render function inside the engines render loop
+    // and run it outside the ngZone
 
     this.resize = fromEvent(window, 'resize').pipe(
       debounceTime(300)
     ).subscribe(() => this.engine.resize());
 
-    this.scene.load('assets/engine.obj');
+    this.scene.loadModels('assets/engine.obj');
   }
 
   ngOnDestroy(): void {
