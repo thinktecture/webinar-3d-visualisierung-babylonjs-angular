@@ -9,7 +9,8 @@
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/zone-flags.ts"
   ],
   "exclude": [
     "src/test.ts",
