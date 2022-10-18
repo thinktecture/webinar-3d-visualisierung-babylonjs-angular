@@ -9,7 +9,7 @@ import {
   MeshBuilder,
   Scene,
   SceneLoader,
-  TransformNode
+  Vector3,
 } from '@babylonjs/core';
 import { OBJFileLoader } from '@babylonjs/loaders';
 import { GridMaterial } from '@babylonjs/materials';
@@ -59,10 +59,14 @@ export class MyScene extends Scene {
   targetCenter() {
     const node = this.getTransformNodeByName('group');
 
-    const {min, max} = node.getHierarchyBoundingVectors(true);
-    node.position.y -= min.y;
+    let center = Vector3.Zero();
 
-    const center = min.add(max).multiplyByFloats(.5, .5, .5);
+    if (node) {
+      const {min, max} = node?.getHierarchyBoundingVectors(true);
+      node.position.y -= min.y;
+      center = min.add(max).multiplyByFloats(.5, .5, .5);
+    }
+
 
     this.arcCamera.setTarget(center, true);
     this.arcCamera.radius = 50;
@@ -141,6 +145,8 @@ export class MyScene extends Scene {
     // - Make a mesh pickable with the cursor
     // - Create a ActionManager for each mesh
     // - Add Actions to the mesh to react to a hover
+
+    this.targetCenter();
   }
 }
 
