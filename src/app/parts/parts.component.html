@@ -1,6 +1,7 @@
 <ul>
   <li
     *ngFor="let part of parts"
+    [class.hover]="highlighted === part"
     (mouseenter)="highlight.emit(part)"
     (click)="selectPart.emit(part)"
   >

@@ -1,4 +1,4 @@
-<app-parts [parts]="parts | async" (selectPart)="select($event)" (highlight)="highlight($event)"></app-parts>
+<app-parts [parts]="parts | async" (selectPart)="select($event)" (highlight)="highlight($event)" [highlighted]="clicked$ | async"></app-parts>
 <div class="controls">
   <button (click)="reset()">Reset: Z</button>
   <span>Hide: H</span>

@@ -19,6 +19,7 @@ SceneLoader.RegisterPlugin(new OBJFileLoader());
 
 export class MyScene extends Scene {
   highlightedMesh: string;
+  highlightedMesh$ = new BehaviorSubject<string | undefined>(undefined);
 
   private arcCamera: ArcRotateCamera;
   parts = new BehaviorSubject<string[]>([]);
@@ -40,6 +41,7 @@ export class MyScene extends Scene {
     m.outlineWidth = 0.3;
     m.renderOutline = true;
     this.highlightedMesh = part;
+    this.highlightedMesh$.next(part);
   }
 
 
@@ -50,6 +52,7 @@ export class MyScene extends Scene {
         m.renderOutline = false;
       }
       this.highlightedMesh = undefined;
+      this.highlightedMesh$.next(undefined);
     }
   }
 

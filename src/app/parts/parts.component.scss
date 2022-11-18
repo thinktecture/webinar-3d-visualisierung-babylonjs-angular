@@ -10,6 +10,17 @@ li {
   padding: .5rem;
   list-style: none;
   transition: .1s;
+
+  &.hover {
+    border-bottom: transparent solid 1px;
+    background-color: skyblue;
+    border-radius: 3px;
+    transition: .3s;
+    box-shadow: rgba($color: #000000, $alpha: .3) 3px 3px 10px ;
+    z-index: 10;
+    margin: 0.7rem 0.3rem;
+    padding: 0.5rem 0.9rem;
+  }
 }
 
 li:hover {
@@ -22,3 +33,5 @@ li:hover {
   margin: 0.7rem 0.3rem;
   padding: 0.5rem 0.9rem;
 }
+
+

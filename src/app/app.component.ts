@@ -19,6 +19,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   private scene: MyScene;
 
   resize = Subscription.EMPTY;
+  clicked$: Observable<string | undefined>;
 
   constructor(private readonly ngZone: NgZone) {
   }
@@ -27,7 +28,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.engine = new Engine(this.canvas.nativeElement);
     this.scene = new MyScene(this.engine);
     this.parts = this.scene.parts;
+    this.clicked$ = this.scene.highlightedMesh$;
     this.scene.init();
+
   }
 
   ngAfterViewInit(): void {

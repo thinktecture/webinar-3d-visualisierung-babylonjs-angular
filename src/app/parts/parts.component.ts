@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-parts',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PartsComponent {
   @Input() parts: string[];
+  @Input() highlighted: string | undefined;
   @Output() selectPart = new EventEmitter<string>();
   @Output() highlight = new EventEmitter<string>();
 }
