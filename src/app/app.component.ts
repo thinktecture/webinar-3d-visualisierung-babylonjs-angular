@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Engine } from '@babylonjs/core';
-import { fromEvent, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { MyScene } from './babylon/my-scene';
+import {doSmth} from 'enterjs'
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   clicked$: Observable<string | undefined>;
 
   constructor(private readonly ngZone: NgZone) {
+    doSmth.echo({value: 'wert'});
   }
 
   ngOnInit(): void {

@@ -148,7 +148,7 @@ function disableCanvasEvents(canvas: HTMLCanvasElement): void {
 }
 
 function preventDefault(event: Event, ref: HTMLCanvasElement): void {
-  if (event.target === ref) {
+  if (event.target === ref && event.cancelable) {
     event.preventDefault();
   }
 }

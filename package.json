@@ -29,7 +29,9 @@
     "@capacitor/core": "^5.0.5",
     "@capacitor/ios": "^5.0.5",
     "codelyzer": "^6.0.2",
+    "enterjs": "file:enterjs",
     "rxjs": "~6.6.7",
+    "test": "^3.3.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.13.1"
   },
